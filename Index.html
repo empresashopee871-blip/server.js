@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Envio Global</title>
+<style>
+    body { font-family: Arial; padding: 20px; background: #111; color: #fff; }
+    h2 { color: #0f0; }
+    button {
+        background: #0f0; border: none; padding: 12px 20px;
+        font-size: 18px; font-weight: bold; border-radius: 8px;
+        cursor: pointer;
+        margin-top: 10px;
+        display:block;
+        width:100%;
+    }
+    #numeroAtual {
+        background:#222; padding:10px; border-radius:8px;
+        font-size:18px; margin-bottom:10px;
+    }
+</style>
+</head>
+
+<body>
+
+<h2>Envio Global</h2>
+
+<h3>Número atual:</h3>
+<div id="numeroAtual">Carregando...</div>
+
+<button onclick="enviar()">Enviar SMS</button>
+
+<script>
+let numeros = ["+5511917219405"];
+let indice = 0;
+
+function atualizarTela() {
+    document.getElementById("numeroAtual").innerText = numeros[indice] || "Sem números";
+}
+atualizarTela();
+
+function enviar() {
+    if (indice >= numeros.length) return;
+    const numero = numeros[indice];
+    const url = `sms:${numero}?body=Mensagem Teste`;
+    window.location.href = url;
+    indice++;
+    atualizarTela();
+}
+</script>
+
+</body>
+</html>
